@@ -52,6 +52,12 @@ namespace AngstyTeen.JSON
                 }
             }
         }
+
+        public void LoadLevel(int saveNum)
+        {
+            string json = new string("");
+            JSONObjectTemplate jsonTemplate = JsonConvert.DeserializeObject<JSONObjectTemplate>(json);
+        }
     }
 }
 
