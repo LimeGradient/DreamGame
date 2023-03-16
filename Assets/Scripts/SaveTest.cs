@@ -20,5 +20,10 @@ public class SaveTest : MonoBehaviour
         {
             json.SaveLevel(1);
         }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            json.LoadLevel(1);
+        }
     }
 }
