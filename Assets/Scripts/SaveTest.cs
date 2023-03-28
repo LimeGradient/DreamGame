@@ -11,6 +11,7 @@ public class SaveTest : MonoBehaviour
     void Start()
     {
         json.CreateLevelSave(1);
+        json.CreatePlayerSave(gameObject);
     }
 
     // Update is called once per frame

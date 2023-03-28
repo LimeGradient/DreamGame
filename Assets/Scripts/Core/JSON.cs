@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
+using Steamworks;
 
 // I wrote all this code while angry
 // if it doesnt work i will kms
@@ -21,11 +22,13 @@ namespace AngstyTeen.JSON
         public bool isChild { get; set; }
     }
 
-    public struct PlayerPosition
+    public struct PlayerData // Make sure this stays updated with inventory
     {
-        public float xPos { get; set; }
-        public float yPos { get; set; }
-        public float zPos { get; set; }
+        public int cabbage;
+        public int tomatoes;
+        
+        public int cabbageSeeds;
+        public int tomatoSeeds;
     }
 
     public class JSON : MonoBehaviour
@@ -55,6 +58,21 @@ namespace AngstyTeen.JSON
                         ".json");
         }
         // ^ ditto
+
+        public void CreatePlayerSave(GameObject g)
+        {
+            if (OS.OS.IsUnix())
+            {
+                Directory.CreateDirectory($"{GameDirectory.GameDirectory.GetAppDataFolder()}/{GamePath}");
+                File.Create(GameDirectory.GameDirectory.GetAppDataFolder() + $"/{GamePath}/" + g.GetComponent<Inventory>().playerID() +
+                            ".json");
+                return;
+            }
+            Directory.CreateDirectory($"{GameDirectory.GameDirectory.GetAppDataFolder()}\\{GamePath}");
+            File.Create(GameDirectory.GameDirectory.GetAppDataFolder() + $"\\{GamePath}\\" + g.GetComponent<Inventory>().playerID() +
+                        ".json");
+        }
+        
         public void SaveLevel(int saveNum)
         {
             GameObject[] allObj = UnityEngine.Object.FindObjectsOfType<GameObject>();
@@ -80,6 +98,20 @@ namespace AngstyTeen.JSON
             }
         }
 
+        public void SavePlayer(Transform t)
+        {
+            Inventory inv = t.GetComponent<Inventory>();
+            PlayerData pd = new PlayerData()
+            {
+                cabbage = inv.cabbage,
+                tomatoes = inv.tomatoes,
+                cabbageSeeds = inv.cabbageSeeds,
+                tomatoSeeds = inv.tomatoSeeds,
+            };
+            string jsonToWrite = JsonConvert.SerializeObject(pd);
+            string saveFilePath = GameDirectory.GameDirectory.GetPlayerJSONFile(SteamUser.GetSteamID().ToString());
+        }
+        
         private UnityEngine.Object LoadPrefab(string name)
         {
             var loadedObject = Resources.Load(name);
@@ -120,6 +152,13 @@ namespace AngstyTeen.JSON
                 }
             }
         }
+
+        public void SetPlayerData()
+        {
+            
+        }
+        
+        
     }
 }
 
@@ -143,6 +182,14 @@ namespace AngstyTeen.GameDirectory
                 return GetAppDataFolder() + $"/{JSON.JSON.GamePath}/level{saveNum.ToString()}.json";
             }
             return GetAppDataFolder() + $"\\{JSON.JSON.GamePath}\\level{saveNum.ToString()}.json";
+        }
+        public static string GetPlayerJSONFile(string playerID)
+        {
+            if (OS.OS.IsUnix())
+            {
+                return GetAppDataFolder() + $"/{JSON.JSON.GamePath}/level{playerID}.json";
+            }
+            return GetAppDataFolder() + $"\\{JSON.JSON.GamePath}\\level{playerID}.json";
         }
     }
 }
