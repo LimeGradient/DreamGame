@@ -6,6 +6,9 @@ TagManager:
   tags:
   - FarmPlot
   - ObjectManager
+  - Coal
+  - Sulfur
+  - Quartz
   layers:
   - Default
   - TransparentFX

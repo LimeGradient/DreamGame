@@ -11,6 +11,8 @@ public class Inventory : MonoBehaviour
         return $"playerid{Core.TripleZeroRandomNum().ToString()}";
     }
     
+    [Header("Farming")]
+    
     // Crops
     public int cabbage;
     public int tomatoes;
@@ -18,6 +20,12 @@ public class Inventory : MonoBehaviour
     // Seeds
     public int cabbageSeeds;
     public int tomatoSeeds;
+
+    [Header("Mining")] 
+    // Ores
+    public int coal;
+    public int sulfur;
+    public int quartz;
 }
 
 namespace AngstyTeen.Core

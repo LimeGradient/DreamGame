@@ -97,4 +97,31 @@ public class ToolSwitch : MonoBehaviour
             return false;
         }
     }
+
+    public bool axeActive()
+    {
+        foreach (GameObject g in tools)
+        {
+            if (g.name == "Axe" && g.activeInHierarchy)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool pickaxeActive()
+    {
+        foreach (GameObject g in tools)
+        {
+            if (g.name == "Pickaxe" && g.activeInHierarchy)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
+
