@@ -9,6 +9,10 @@ TagManager:
   - Coal
   - Sulfur
   - Quartz
+  - Stone
+  - Tree
+  - Axe
+  - Pickaxe
   layers:
   - Default
   - TransparentFX

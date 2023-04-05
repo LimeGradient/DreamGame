@@ -1,11 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ToolSwitch : MonoBehaviour
 {
-    public GameObject[] tools;
+    public List<GameObject> tools = new List<GameObject>();
+
+    private bool canDropAxe;
+    private bool canDropPick;
 
     private void Start()
     {
@@ -75,6 +79,21 @@ public class ToolSwitch : MonoBehaviour
             tools[9].SetActive(true);
             ToolInSlot(tools[9]);
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            GameObject droppedTool = Instantiate(getActiveTool(), transform.position+(transform.forward*2), Quaternion.identity);
+            droppedTool.AddComponent<Rigidbody>().AddForce(transform.forward * 2, ForceMode.Impulse);
+            droppedTool.AddComponent<ToolDurability>().durability =
+                getActiveTool().GetComponent<ToolDurability>().durability;
+            foreach (GameObject go in tools)
+            {
+                if (getActiveTool().name == go.name)
+                {
+                    go.SetActive(false);
+                }
+            }
+        }
     }
 
     void ResetTools()
@@ -83,6 +102,20 @@ public class ToolSwitch : MonoBehaviour
         {
             g.SetActive(false);
         }
+    }
+
+    public GameObject getActiveTool()
+    {
+        GameObject go = null;
+        foreach (GameObject g in tools)
+        {
+            if (g.activeInHierarchy)
+            {
+                go = g;
+            }
+        }
+
+        return go;
     }
 
     bool ToolInSlot(GameObject g)
@@ -122,6 +155,20 @@ public class ToolSwitch : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Axe"))
+        {
+            foreach (GameObject go in tools)
+            {
+                if (!go.activeInHierarchy)
+                {
+                    go.SetActive(true);
+                }
+            }
+        }
     }
 }
 

@@ -21,8 +21,12 @@ public class Inventory : MonoBehaviour
     public int cabbageSeeds;
     public int tomatoSeeds;
 
-    [Header("Mining")] 
+    [Header("Mining")]
+    // Wood
+    public int wood;
+    
     // Ores
+    public int stone;
     public int coal;
     public int sulfur;
     public int quartz;
