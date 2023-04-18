@@ -13,6 +13,7 @@ TagManager:
   - Tree
   - Axe
   - Pickaxe
+  - InventoryManager
   layers:
   - Default
   - TransparentFX

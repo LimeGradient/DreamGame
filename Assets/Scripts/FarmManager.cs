@@ -42,7 +42,7 @@ public class FarmManager : MonoBehaviour
 
                     if (g.name.Contains("Tomato"))
                     {
-                        inv.tomatoes++;
+                        inv.tomato++;
                     }
                     
                 }
