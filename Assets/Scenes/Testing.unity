@@ -1368,6 +1368,11 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: f31959fa6ca564048994f2902fd34741, type: 3}
     stackable: 1
     count: 0
+  - id: 3
+    name: Stone
+    icon: {fileID: 21300000, guid: ee0676ccf39d94e76902666bf071f533, type: 3}
+    stackable: 1
+    count: 0
   - id: 101
     name: Axe
     icon: {fileID: 21300000, guid: 25a454fe03e3e484ca614bc919725e97, type: 3}
