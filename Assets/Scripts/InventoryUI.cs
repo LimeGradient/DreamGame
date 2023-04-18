@@ -24,16 +24,13 @@ public class InventoryUI : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             visible = !visible;
             inventoryPanel.SetActive(visible);
         }
         
-        if (inventory.items.Count != itemImages.Count && visible)
-        {
-            UpdateUI();
-        }
+        UpdateUI();
     }
 
     public void UpdateUI()
@@ -73,7 +70,6 @@ public class InventoryUI : MonoBehaviour
             if (item.stackable)
             {
                 countText.text = item.count.ToString();
-                countText.enabled = item.count > 1;
             }
             else
             {
