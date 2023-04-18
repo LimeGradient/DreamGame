@@ -1,44 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using AngstyTeen.Core;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    // Important Player Vars
-    public string playerID()
+    [HideInInspector] public int wood;
+    [HideInInspector] public int stone;
+    [HideInInspector] public int sulfur;
+    [HideInInspector] public int quartz;
+    [HideInInspector] public int coal;
+    [HideInInspector] public int cabbage;
+    [HideInInspector] public int cabbageSeeds;
+    [HideInInspector] public int tomato;
+    [HideInInspector] public int tomatoSeeds;
+
+    public InventoryManager InventoryManager;
+
+    private void Start()
     {
-        return $"playerid{Core.TripleZeroRandomNum().ToString()}";
+        cabbageSeeds = 24;
+        tomatoSeeds = 24;
     }
-    
-    [Header("Farming")]
-    
-    // Crops
-    public int cabbage;
-    public int tomatoes;
-    
-    // Seeds
-    public int cabbageSeeds;
-    public int tomatoSeeds;
 
-    [Header("Mining")]
-    // Wood
-    public int wood;
-    
-    // Ores
-    public int stone;
-    public int coal;
-    public int sulfur;
-    public int quartz;
-}
-
-namespace AngstyTeen.Core
-{
-    public class Core
+    private void Update()
     {
-        public static int TripleZeroRandomNum()
-        {
-            return Random.Range(100, 999);
-        }
+        InventoryManager.items[0].count = cabbage;
+        InventoryManager.items[1].count = tomato;
+        InventoryManager.items[2].count = stone;
     }
 }
