@@ -25,8 +25,8 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        InventoryManager.items[0].count = cabbage;
-        InventoryManager.items[1].count = tomato;
-        InventoryManager.items[2].count = stone;
+        //InventoryManager.items[0].count = cabbage;
+        //InventoryManager.items[1].count = tomato;
+        //InventoryManager.items[2].count = stone;
     }
 }

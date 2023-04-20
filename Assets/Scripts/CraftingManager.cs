@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,12 +17,12 @@ public class CraftingManager : MonoBehaviour
 
     }
 
-    public bool RecipeCheck()
+    public bool RecipeCheck(int recipeId)
     {
-        for (int i = 0; i < Recipes[0].Ingredients.Count; i++)
+        for (int i = 0; i < Recipes[recipeId].Ingredients.Count; i++)
         {
-            if (invMan.items[Recipes[0].Ingredients[i].IngredientId].count >= Recipes[0].Ingredients[i].IngredientAmount)
-            {                
+            if (invMan.items[Recipes[recipeId].Ingredients[i].IngredientId].count >= Recipes[recipeId].Ingredients[i].IngredientAmount)
+            {
                 Debug.Log("True " + i, this);
             }
             else
@@ -31,7 +30,12 @@ public class CraftingManager : MonoBehaviour
                 Debug.Log("False");
                 return false;
             }
-            
+
+        }
+        invMan.items[Recipes[recipeId].ResultId].count += Recipes[recipeId].ResultAmount;
+        for (int i = 0; i < Recipes[recipeId].Ingredients.Count; i++)
+        {
+            invMan.items[Recipes[recipeId].Ingredients[i].IngredientId].count -= Recipes[recipeId].Ingredients[i].IngredientAmount;
         }
         return true;
 
@@ -41,6 +45,7 @@ public class CraftingManager : MonoBehaviour
     public class Recipe
     {
         public int ResultId;
+        public int ResultAmount;
         public List<Ingredient> Ingredients = new List<Ingredient>();
     }
 

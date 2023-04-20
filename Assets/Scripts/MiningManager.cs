@@ -10,6 +10,7 @@ public class MiningManager : MonoBehaviour
 {
     private ToolSwitch ts;
     private Inventory inv;
+    [SerializeField] private InventoryManager invMan;
 
     public GameObject explosion;
 
@@ -42,7 +43,8 @@ public class MiningManager : MonoBehaviour
 
                 if (hit.transform.CompareTag("Stone") && ts.pickaxeActive())
                 {
-                    inv.stone += Random.Range(1, 5);
+                    //inv.stone += Random.Range(1, 5);
+                    invMan.items[2].count += Random.Range(1, 5);
                 }
                 if (hit.transform.CompareTag("Quartz") && ts.pickaxeActive())
                 {

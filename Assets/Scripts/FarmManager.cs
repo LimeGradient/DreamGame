@@ -13,6 +13,7 @@ public class FarmManager : MonoBehaviour
     private FarmPlot plot;
     private Inventory inv;
 
+    [SerializeField] private InventoryManager invMan;
     private void Start()
     {
         inv = GetComponent<Inventory>();
@@ -37,14 +38,16 @@ public class FarmManager : MonoBehaviour
                 {
                     if (g.name.Contains("Cabbage"))
                     {
-                        inv.cabbage++;
+                        //inv.cabbage++;
+                        invMan.items[0].count++;
                     }
 
                     if (g.name.Contains("Tomato"))
                     {
-                        inv.tomato++;
+                        //inv.tomato++;
+                        invMan.items[1].count++;
                     }
-                    
+
                 }
                 plot.ResetCrops();
             }

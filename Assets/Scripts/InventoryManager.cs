@@ -23,6 +23,7 @@ public class InventoryManager : MonoBehaviour
         items.Add(item);
         return true;
     }
+
 }
 
 [System.Serializable]
