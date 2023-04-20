@@ -76,7 +76,7 @@ public class MiningManager : MonoBehaviour
                 if (hit.transform.GetComponent<Ore>().health == 0)
                 {
                     hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                    hit.transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
+                    hit.transform.GetComponent<Rigidbody>().AddForce(new Vector3(20, 20, 0), ForceMode.Impulse);
                 }
 
                 if (hit.transform.GetComponent<Ore>().health != 0)
