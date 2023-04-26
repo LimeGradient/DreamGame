@@ -137,6 +137,7 @@ public class ToolSwitch : MonoBehaviour
         {
             if (g.name == "Axe" && g.activeInHierarchy)
             {
+                print("axe active");
                 return true;
             }
         }
@@ -150,6 +151,7 @@ public class ToolSwitch : MonoBehaviour
         {
             if (g.name == "Pickaxe" && g.activeInHierarchy)
             {
+                print("pickaxe active");
                 return true;
             }
         }

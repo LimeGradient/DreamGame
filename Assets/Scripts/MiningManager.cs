@@ -68,6 +68,7 @@ public class MiningManager : MonoBehaviour
             {
                 if (!hit.transform.GetComponent<Ore>())
                 {
+                    Debug.LogError("No Ore Script found at " + hit.transform.name);
                     return;
                 }
 
