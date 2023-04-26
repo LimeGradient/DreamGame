@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
+    [SerializeField] private SC_FPSController playerCon;
     public InventoryManager inventory;
 
     public GameObject inventoryPanel;
@@ -26,8 +27,22 @@ public class InventoryUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            visible = !visible;
-            inventoryPanel.SetActive(visible);
+            if(playerCon.canMove == !visible)
+            {
+                visible = !visible;
+                inventoryPanel.SetActive(visible);
+                Cursor.visible = visible;
+                playerCon.canMove = !visible;
+                if (visible)
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+            }
+
         }
         
         UpdateUI();
@@ -89,6 +104,7 @@ public class InventoryUI : MonoBehaviour
         for (int j = i; j < itemImages.Count; j++)
         {
             itemImages[j].enabled = false;
+            itemImages[j].GetComponentInChildren<Text>().enabled = false;
         }
     }
 }

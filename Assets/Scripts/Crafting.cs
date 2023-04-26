@@ -7,6 +7,7 @@ public class Crafting : MonoBehaviour
     [SerializeField] private CraftingManager craftingManager;
     public bool NearCraftingStation = false;
     [SerializeField] private GameObject craftingMenu;
+    [SerializeField] private SC_FPSController playerCon;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,17 +19,19 @@ public class Crafting : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && NearCraftingStation)
         {
-            if(craftingMenu.activeSelf == false)
+            if (!craftingMenu.activeSelf && playerCon.canMove)
             {
                 craftingMenu.SetActive(true);
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
+                playerCon.canMove = false;
             }
-            else
+            else if (craftingMenu.activeSelf)
             {
                 craftingMenu.SetActive(false);
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
+                playerCon.canMove = true;
             }
 
         }
@@ -37,6 +40,11 @@ public class Crafting : MonoBehaviour
     public void ChooseRecipe(int recipeId)
     {
         craftingManager.RecipeCheck(recipeId);
+    }
+
+    public void HandChooseRecipe(int recipeId)
+    {
+        craftingManager.HandRecipeCheck(recipeId);
     }
 
     private void OnTriggerEnter(Collider other)
