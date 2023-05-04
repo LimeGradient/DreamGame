@@ -38,7 +38,7 @@ public class MiningManager : MonoBehaviour
                 {
                     return;
                 }
-                hit.transform.GetComponent<Ore>().health -= damage;
+                hit.transform.GetComponent<Ore>().gayfurryfemboyhitler(1);
                 Instantiate(explosion, hit.point, transform.rotation);
 
                 if (hit.transform.CompareTag("Stone") && ts.pickaxeActive())
@@ -72,7 +72,7 @@ public class MiningManager : MonoBehaviour
                     return;
                 }
 
-                hit.transform.GetComponent<Ore>().health -= damage;
+                hit.transform.GetComponent<Ore>().gayfurryfemboyhitler(1);
                 Instantiate(explosion, hit.point, transform.rotation);
                 if (hit.transform.GetComponent<Ore>().health == 0)
                 {

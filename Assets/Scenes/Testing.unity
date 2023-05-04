@@ -1015,6 +1015,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d813c9fae4d4ab41842d439cdbeeca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &826130925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826130910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e08c9b40f60405f9605e4710631cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TreeRenderRadius: 10
 --- !u!1 &867155239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,6 +1145,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3448647613925869208, guid: a2bd798ea40c7e341aa61ad124d95342, type: 3}
   m_PrefabInstance: {fileID: 1825658850}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1095938370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1095938372}
+  - component: {fileID: 1095938371}
+  m_Layer: 0
+  m_Name: LoadManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1095938371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095938370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1316b7c6e96da404d9ab044eae6e11eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trees:
+  - {fileID: 9154215057541871321, guid: 2554008d6447a2540b44e55f0c0b576e, type: 3}
+  - {fileID: 2636820298107493410, guid: a2bd798ea40c7e341aa61ad124d95342, type: 3}
+--- !u!4 &1095938372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095938370}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 337.70996, y: 106.43032, z: 444.0852}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1212031793 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3448647613925869208, guid: a2bd798ea40c7e341aa61ad124d95342, type: 3}
