@@ -52,7 +52,7 @@ public class FarmManager : MonoBehaviour
                 plot.ResetCrops();
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && !plot.isGrown)
+            if (Input.GetKeyDown(KeyCode.E) && !plot.isGrown && !plot.isGrowing)
             {
                 if (plot.cropType.Contains("Cabbage") && inv.cabbageSeeds != 0)
                 {

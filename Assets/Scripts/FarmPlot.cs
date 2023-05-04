@@ -14,6 +14,8 @@ public class FarmPlot : MonoBehaviour
     private int i;
 
     public string cropType;
+
+    public bool isGrowing;
     // Start is called before the first frame update
     void Start()
     {
@@ -88,8 +90,11 @@ public class FarmPlot : MonoBehaviour
         if (i == 4)
         {
             i = 0;
+            isGrowing = false;
             yield break;
         }
+
+        isGrowing = true;
         yield return new WaitForSeconds(1);
         StartCoroutine(growCrops());
     }
