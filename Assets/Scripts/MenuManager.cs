@@ -8,7 +8,7 @@ public class MenuManager : MonoBehaviour
 {
     public void Quit()
     {
-        for (int i = 0; i > i++; i++)
+        for (int i = 0; i < i++; i++)
         {
             Debug.LogError("you retard");
         }
