@@ -28,6 +28,13 @@ public class MiningManager : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward, Color.blue);
+
+        foreach (Transform t in Camera.main.transform)
+        {
+            if (t.CompareTag("Pickaxe")) ts.PickaxeActive = true;
+            else ts.PickaxeActive = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.Mouse0) && ts.pickaxeActive())
         {
             RaycastHit hit;

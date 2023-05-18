@@ -11,6 +11,9 @@ public class ToolSwitch : MonoBehaviour
     private bool canDropAxe;
     private bool canDropPick;
 
+    public bool AxeActive;
+    public bool PickaxeActive;
+    
     private void Start()
     {
         ResetTools();
@@ -79,24 +82,9 @@ public class ToolSwitch : MonoBehaviour
             tools[9].SetActive(true);
             ToolInSlot(tools[9]);
         }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            GameObject droppedTool = Instantiate(getActiveTool(), transform.position+(transform.forward*2), Quaternion.identity);
-            droppedTool.AddComponent<Rigidbody>().AddForce(transform.forward * 2, ForceMode.Impulse);
-            droppedTool.AddComponent<ToolDurability>().durability =
-                getActiveTool().GetComponent<ToolDurability>().durability;
-            foreach (GameObject go in tools)
-            {
-                if (getActiveTool().name == go.name)
-                {
-                    go.SetActive(false);
-                }
-            }
-        }
     }
 
-    void ResetTools()
+    public void ResetTools()
     {
         foreach (GameObject g in tools)
         {
@@ -133,11 +121,10 @@ public class ToolSwitch : MonoBehaviour
 
     public bool axeActive()
     {
-        foreach (GameObject g in tools)
+        for (int i = 0; i < tools.Count; i++)
         {
-            if (g.name == "Axe" && g.activeInHierarchy)
+            if (tools[i].tag == "Axe" && tools[i].activeInHierarchy)
             {
-                print("axe active");
                 return true;
             }
         }
@@ -147,13 +134,9 @@ public class ToolSwitch : MonoBehaviour
 
     public bool pickaxeActive()
     {
-        foreach (GameObject g in tools)
+        foreach (GameObject obj in tools)
         {
-            if (g.name == "Pickaxe" && g.activeInHierarchy)
-            {
-                print("pickaxe active");
-                return true;
-            }
+            if (obj.tag == "Pickaxe" && obj.gameObject.activeInHierarchy) return true;
         }
 
         return false;

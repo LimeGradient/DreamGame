@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8266284153755273507}
   - component: {fileID: 7256394672567371299}
   - component: {fileID: 8372858703792840750}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Quartz
   m_TagString: Untagged
   m_Icon: {fileID: 0}

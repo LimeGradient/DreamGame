@@ -37,9 +37,9 @@ public class LoadObjectsStart : MonoBehaviour
                 Transform _oreTransform = _ore.transform;
                 _oreTransform.position =
                     new Vector3(_oreTransform.position.x, hit.point.y, _oreTransform.position.z);
-                if (_ore.name == "Quartz")
+                if (_ore.layer == 6)
                 {
-                    Vector3 rot = new Vector3(Random.Range(10, 180), _ore.transform.rotation.y,
+                    Vector3 rot = new Vector3(_ore.transform.rotation.x, Random.Range(10, 180),
                         _ore.transform.rotation.z);
                     _ore.transform.Rotate(rot);
                 }
