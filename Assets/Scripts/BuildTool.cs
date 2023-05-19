@@ -16,6 +16,7 @@ public class BuildTool : MonoBehaviour
 
     public Material buildMat;
     public Material defaultMat;
+    public Material defaultFarmMat;
 
     private KeyCode[] keys =
     {
@@ -51,14 +52,24 @@ public class BuildTool : MonoBehaviour
                 if (Input.GetKeyDown(keys[i]) && isBuilding)
                 {
                     buildObjIndex = i-1;
+                    currentPrev.transform.position = new Vector3(0, -100, 0);
                 }
             }
 
             currentPrev = objPrev[buildObjIndex];
+            if (!currentPrev.GetComponent<Renderer>())
+            {
+                currentPrev.AddComponent<MeshRenderer>();
+            }
             currentPrev.GetComponent<Renderer>().material = buildMat;
             foreach (Transform t in currentPrev.transform)
             {
+                if (!t.GetComponent<Collider>())
+                {
+                    continue;
+                }
                 t.GetComponent<Renderer>().material = buildMat;
+                t.GetComponent<Collider>().enabled = false;
             }
             currentPrev.transform.position = hit.point;
             Quaternion currentRot;

@@ -6,6 +6,7 @@ public class LoadObjectsStart : MonoBehaviour
 {
     public GameObject[] trees;
     public GameObject[] ores;
+    public GameObject[] farmPlots;
 
     [Range(1, 6000)] public int spawnRange;
     // Start is called before the first frame update
@@ -47,6 +48,23 @@ public class LoadObjectsStart : MonoBehaviour
             else
             {
                 Destroy(_ore);
+            }
+        }
+
+        for (int i = 0; i < Random.Range(spawnRange - 4000, spawnRange - 3900); i++)
+        {
+            GameObject _farmPlot = Instantiate(farmPlots[Random.Range(1, 2)], newSpawnPos(), Quaternion.identity);
+            RaycastHit hit;
+            if (Physics.Raycast(_farmPlot.transform.position, Vector3.down, out hit))
+            {
+                Transform _farmPlotTransform = _farmPlot.transform;
+                _farmPlotTransform.position = new Vector3(_farmPlotTransform.position.x,
+                    hit.point.y + 2, _farmPlotTransform.position.z);
+                print(hit.transform.rotation);
+            }
+            else
+            {
+                Destroy(_farmPlot);
             }
         }
     }
