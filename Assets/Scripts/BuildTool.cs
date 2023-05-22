@@ -8,7 +8,7 @@ public class BuildTool : MonoBehaviour
     private GameObject currentObj;
     private GameObject currentPrev;
     [SerializeField] private GameObject rayOrigin;
-    [SerializeField] private bool isBuilding;
+    public bool isBuilding;
     public GameObject[] buildObj;
     public GameObject player;
     private int buildObjIndex;
@@ -17,6 +17,8 @@ public class BuildTool : MonoBehaviour
     public Material buildMat;
     public Material defaultMat;
     public Material defaultFarmMat;
+    [SerializeField] private InventoryManager inventoryManager;
+    [SerializeField] private HeldItem heldItem;
 
     private KeyCode[] keys =
     {
@@ -38,10 +40,17 @@ public class BuildTool : MonoBehaviour
 
     private void Update()
     {
+        if(heldItem.heldItemId != 9)
+        {
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.B))
         {
             isBuilding = !isBuilding;
-            player.GetComponent<ToolSwitch>().enabled = !player.GetComponent<ToolSwitch>().enabled;
+            if (!isBuilding)
+            {
+                Destroy(currentPrev.GetComponent<Renderer>());
+            }
         }
         
         RaycastHit hit;
@@ -79,8 +88,9 @@ public class BuildTool : MonoBehaviour
                 currentPrev.transform.Rotate(new Vector3(0, 90, 0));
             }
 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) && inventoryManager.items[8].count >= 10)
             {
+                inventoryManager.AddItemToInventory(8, -10);
                 currentObj = Instantiate(buildObj[buildObjIndex], hit.point, currentRot);
                 currentObj.GetComponent<Renderer>().material = defaultMat;
                 foreach (Transform t in currentObj.transform)

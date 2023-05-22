@@ -33,10 +33,12 @@ public class CraftingManager : MonoBehaviour
             }
 
         }
-        invMan.items[Recipes[recipeId].ResultId].count += Recipes[recipeId].ResultAmount;
+        //invMan.items[Recipes[recipeId].ResultId].count += Recipes[recipeId].ResultAmount;
+        invMan.AddItemToInventory(Recipes[recipeId].ResultId, Recipes[recipeId].ResultAmount);
         for (int i = 0; i < Recipes[recipeId].Ingredients.Count; i++)
         {
-            invMan.items[Recipes[recipeId].Ingredients[i].IngredientId].count -= Recipes[recipeId].Ingredients[i].IngredientAmount;
+            //invMan.items[Recipes[recipeId].Ingredients[i].IngredientId].count -= Recipes[recipeId].Ingredients[i].IngredientAmount;
+            invMan.AddItemToInventory(Recipes[recipeId].Ingredients[i].IngredientId, -Recipes[recipeId].Ingredients[i].IngredientAmount);
         }
         return true;
 
@@ -57,10 +59,12 @@ public class CraftingManager : MonoBehaviour
             }
 
         }
-        invMan.items[HandRecipes[recipeId].ResultId].count += HandRecipes[recipeId].ResultAmount;
+        //invMan.items[HandRecipes[recipeId].ResultId].count += HandRecipes[recipeId].ResultAmount;
+        invMan.AddItemToInventory(HandRecipes[recipeId].ResultId, HandRecipes[recipeId].ResultAmount);
         for (int i = 0; i < HandRecipes[recipeId].Ingredients.Count; i++)
         {
-            invMan.items[HandRecipes[recipeId].Ingredients[i].IngredientId].count -= HandRecipes[recipeId].Ingredients[i].IngredientAmount;
+            //invMan.items[HandRecipes[recipeId].Ingredients[i].IngredientId].count -= HandRecipes[recipeId].Ingredients[i].IngredientAmount;
+            invMan.AddItemToInventory(HandRecipes[recipeId].Ingredients[i].IngredientId, -HandRecipes[recipeId].Ingredients[i].IngredientAmount);
         }
         return true;
 

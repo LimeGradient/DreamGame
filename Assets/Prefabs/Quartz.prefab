@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8372858703792840750}
   m_Layer: 6
   m_Name: Quartz
-  m_TagString: Untagged
+  m_TagString: Quartz
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -5,23 +5,18 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public List<Item> items = new List<Item>();
+    [SerializeField] private PlayerInventory playerInventory;
 
-    public bool AddItem(Item item)
+    public void AddItemToInventory(int id, int count)
     {
-        if (item.stackable)
+        int _addCount = playerInventory.UpdatePlayerInventory(id, count);
+        items[id].count += count;
+        if (_addCount != count)
         {
-            foreach (Item invItem in items)
-            {
-                if (invItem.id == item.id)
-                {
-                    invItem.count += item.count;
-                    return true;
-                }                
-            }
+            int _dropCount = count - _addCount;
+            //later will drop items
         }
-
-        items.Add(item);
-        return true;
+        playerInventory.UpdateHotbarUI();
     }
 
 }

@@ -24,7 +24,7 @@ public class FarmManager : MonoBehaviour
         if (isInPlot)
         {
             Farm(c);
-        }       
+        }
     }
 
     void Farm(Collider col)
@@ -39,20 +39,22 @@ public class FarmManager : MonoBehaviour
                     if (g.name.Contains("Cabbage"))
                     {
                         //inv.cabbage++;
-                        invMan.items[0].count++;
+                        //invMan.items[0].count++;
+                        invMan.AddItemToInventory(0, 1);
                     }
 
                     if (g.name.Contains("Tomato"))
                     {
                         //inv.tomato++;
-                        invMan.items[1].count++;
+                        //invMan.items[1].count++;
+                        invMan.AddItemToInventory(1, 1);
                     }
 
                 }
                 plot.ResetCrops();
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && !plot.isGrown && !plot.isGrowing)
+            if (Input.GetKeyDown(KeyCode.E) && !plot.isGrown)
             {
                 if (plot.cropType.Contains("Cabbage") && inv.cabbageSeeds != 0)
                 {

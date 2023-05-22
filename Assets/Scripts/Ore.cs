@@ -12,9 +12,9 @@ public class Ore : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void gayfurryfemboyhitler(int cock)
+    public void AdjustHealth(int damage)
     {
-        health -= cock;
+        health -= damage;
         if (health <= 0)
         {
             gameObject.AddComponent<Rigidbody>().AddForce(new Vector3(10, 100, 0), ForceMode.Impulse);  
