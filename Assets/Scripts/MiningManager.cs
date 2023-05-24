@@ -14,6 +14,9 @@ public class MiningManager : MonoBehaviour
     [SerializeField] private HeldItem heldItem;
     [SerializeField] private SC_FPSController fpsController;
 
+    public AudioSource mining;
+    public AudioSource explosionSFX;
+
     public GameObject explosion;
 
     public float hitRange = 2.5f; // How far away before cant hit
@@ -39,6 +42,8 @@ public class MiningManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && fpsController.canMove)
         {
+            mining.enabled = true;
+            explosionSFX.Play();
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit,
                     hitRange))

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class LoadObjectsStart : MonoBehaviour
 {
@@ -9,9 +10,16 @@ public class LoadObjectsStart : MonoBehaviour
     public GameObject[] farmPlots;
 
     [Range(1, 6000)] public int spawnRange;
+
+    public AudioMixer game;
+
+    public AudioMixer music;
     // Start is called before the first frame update
     void Start()
     {
+        Camera.main.fieldOfView = PlayerPrefs.GetFloat("fov");
+        game.SetFloat("Volume", (-80 + PlayerPrefs.GetFloat("gameVol") * 100));
+        music.SetFloat("Volume", (-80 + PlayerPrefs.GetFloat("musicVol") * 100));
         for (int i = 0; i < Random.Range(spawnRange, spawnRange + 100); i++)
         {
             print(i);
@@ -60,7 +68,7 @@ public class LoadObjectsStart : MonoBehaviour
                 Transform _farmPlotTransform = _farmPlot.transform;
                 _farmPlotTransform.position = new Vector3(_farmPlotTransform.position.x,
                     hit.point.y + 2, _farmPlotTransform.position.z);
-                print(hit.transform.rotation);
+                _farmPlotTransform.Rotate(new Vector3(_farmPlotTransform.rotation.x, _farmPlotTransform.rotation.y, FindTerrainHillAngle(_farmPlotTransform)));
             }
             else
             {
@@ -79,5 +87,27 @@ public class LoadObjectsStart : MonoBehaviour
     {
         Vector3 spawnPos = new Vector3(Random.Range(10, 1000), 500, Random.Range(10, 1000));
         return spawnPos;
+    }
+
+    float FindTerrainHillAngle(Transform t)
+    {
+        RaycastHit front;
+        RaycastHit down;
+
+        float frontLength = 0f;
+        float downLength = 0f;
+
+        if (Physics.Raycast(t.position, Vector3.forward, out front, 10f))
+        {
+            frontLength = front.distance;
+        }
+
+        if (Physics.Raycast(t.position, Vector3.down, out down, 10f))
+        {
+            downLength = down.distance;
+        }
+
+        print(frontLength + " " + downLength);
+        return Mathf.Atan(frontLength / downLength);
     }
 }

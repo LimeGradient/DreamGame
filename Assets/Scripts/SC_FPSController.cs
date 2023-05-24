@@ -24,6 +24,8 @@ public class SC_FPSController : MonoBehaviour
     [HideInInspector]
     public bool isCrouched = false;
 
+    public AudioSource walking;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -31,6 +33,7 @@ public class SC_FPSController : MonoBehaviour
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        walking.enabled = false;
     }
 
     void Update()
@@ -64,6 +67,7 @@ public class SC_FPSController : MonoBehaviour
 
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
+        walking.enabled = true;
 
         // Player and Camera rotation
         if (canMove)
@@ -72,6 +76,12 @@ public class SC_FPSController : MonoBehaviour
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+            
+        }
+
+        if (!canMove)
+        {
+            walking.enabled = false;
         }
         
     }
