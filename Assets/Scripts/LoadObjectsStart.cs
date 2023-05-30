@@ -35,11 +35,11 @@ public class LoadObjectsStart : MonoBehaviour
             {
                 Destroy(_tree);
             }
-        }
+        }   
 
         for (int i = 0; i < Random.Range(spawnRange - 3000, spawnRange - 2900); i++)
         {
-            GameObject _ore = Instantiate(ores[Random.Range(1, 3)], newSpawnPos(), Quaternion.identity);
+            GameObject _ore = Instantiate(ores[Random.Range(0, ores.Length)], newSpawnPos(), Quaternion.identity);
             RaycastHit hit;
             if (Physics.Raycast(_ore.transform.position, Vector3.down, out hit))
             {
@@ -61,7 +61,7 @@ public class LoadObjectsStart : MonoBehaviour
 
         for (int i = 0; i < Random.Range(spawnRange - 4000, spawnRange - 3900); i++)
         {
-            GameObject _farmPlot = Instantiate(farmPlots[Random.Range(1, 2)], newSpawnPos(), Quaternion.identity);
+            GameObject _farmPlot = Instantiate(farmPlots[Random.Range(0, farmPlots.Length)], newSpawnPos(), Quaternion.identity);
             RaycastHit hit;
             if (Physics.Raycast(_farmPlot.transform.position, Vector3.down, out hit))
             {
@@ -109,5 +109,32 @@ public class LoadObjectsStart : MonoBehaviour
 
         print(frontLength + " " + downLength);
         return Mathf.Atan(frontLength / downLength);
+    }
+
+    void GenerateForest()
+    {
+        Vector3 centerForestPos = newSpawnPos();
+        for (int i = 0; i < spawnRange; i++)
+        {
+            var rad = 2 * Mathf.PI / spawnRange * i;
+            var vert = Mathf.Sin(rad);
+            var horz = Mathf.Cos(rad);
+
+            var spawnDir = new Vector3(horz, 0, vert);
+            var spawnPos = centerForestPos + spawnDir * rad;
+
+            var tree = Instantiate(trees[Random.Range(0, trees.Length)], spawnPos, Quaternion.identity) as GameObject;
+            RaycastHit hit;
+            if (Physics.Raycast(tree.transform.position, Vector3.down, out hit))
+            {
+                Transform _treeTransform = tree.transform;
+                _treeTransform.position =
+                    new Vector3(_treeTransform.position.x, hit.point.y - 1, _treeTransform.position.z);
+            }
+            else
+            {
+                Destroy(tree);
+            }
+        }
     }
 }

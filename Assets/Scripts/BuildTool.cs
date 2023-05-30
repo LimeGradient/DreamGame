@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BuildTool : MonoBehaviour
@@ -19,6 +20,7 @@ public class BuildTool : MonoBehaviour
     public Material defaultFarmMat;
     [SerializeField] private InventoryManager inventoryManager;
     [SerializeField] private HeldItem heldItem;
+    [SerializeField] private TMP_Text keyPressText;
 
     private KeyCode[] keys =
     {
@@ -52,7 +54,13 @@ public class BuildTool : MonoBehaviour
                 Destroy(currentPrev.GetComponent<Renderer>());
             }
         }
-        
+
+        if (isBuilding)
+            keyPressText.text = "Press B to Stop Building";
+
+        if (!isBuilding) 
+            keyPressText.text = "Press B to Build";
+
         RaycastHit hit;
         if (Physics.Raycast(rayOrigin.transform.position, rayOrigin.transform.forward, out hit) && isBuilding)
         {
